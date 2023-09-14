@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/Sraik25/audiofile/cmd/cli/command"
-	"github.com/Sraik25/audiofile/internal/interfaces"
 	"net/http"
 	"os"
+
+	"github.com/Sraik25/audiofile/cmd/cli/command"
+	"github.com/Sraik25/audiofile/internal/interfaces"
 )
 
 func main() {
@@ -13,12 +14,12 @@ func main() {
 	cmds := []interfaces.Command{
 		command.NewGetCommand(client),
 		command.NewUploadCommand(client),
-		command.NewListCommand(client),
+		//command.NewListCommand(client),
 	}
 
 	parser := command.NewParser(cmds)
 	if err := parser.Parse(os.Args[1:]); err != nil {
-		os.Stderr.WriteString(fmt.Printf("error: %v", err.Error()))
+		os.Stderr.WriteString(fmt.Sprintf("error: %v", err.Error()))
 		os.Exit(1)
 	}
 }
